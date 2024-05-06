@@ -800,6 +800,9 @@ export default class Simulator {
 
   _hasCarDynamicObstacleCollision(carRectangle) {
     for (const obstacle of this.dynamicObstaclesGroup.children) {
+      if (!obstacle.visible) {
+        continue;
+      }
       const positoin_at_time = obstacle.position
       const obstacleRectangle = {
         x: positoin_at_time.x,
