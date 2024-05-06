@@ -72,7 +72,7 @@ export default class DynamicObstacleEditor {
       for (const [k, v] of formData.entries())
         params[k] = v;
 
-      const pos = new THREE.Vector2(Number(params.sPos) || 0, (Number(params.lPos) || 0) * PathPlannerConfigEditor.internalConfig.roadWidth / 2);
+      const pos = new THREE.Vector2(Number(params.sPos) || 0, Number(params.lPos) || 0);
       const vel = new THREE.Vector2(Number(params.sVel) || 0, Number(params.lVel) || 0);
       const parallel = !!params.parallel;
 
