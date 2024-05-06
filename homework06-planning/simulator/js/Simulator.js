@@ -800,6 +800,9 @@ export default class Simulator {
 
   _hasCarDynamicObstacleCollision(carRectangle) {
     for (const obstacle of this.dynamicObstaclesGroup.children) {
+      if (!obstacle.visible) {
+        continue;
+      }
       const positoin_at_time = obstacle.position
       const obstacleRectangle = {
         x: positoin_at_time.x,
@@ -854,7 +857,7 @@ export default class Simulator {
 
   isOutOfTrajectory() {
     const trajectoryPolyline = this.autonomousCarController.path.poses.map(p => p.pos);
-    const distanceToTrajectory = distanceFromPolylineToPoint(this.car.pose.pos, trajectoryPolyline);
+    const distanceToTrajectory = distanceFromPolylineToPoint(this.car.position, trajectoryPolyline);
     if (distanceToTrajectory > 1.0) {
       return distanceToTrajectory;
     }
